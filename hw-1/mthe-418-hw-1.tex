@@ -1,0 +1,204 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBehind{\normaljobname}{hw-}[\homeworknumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+\usepackage{fontspec}
+\usepackage{lstfiracode}
+
+\setmonofont{FiraCode}[
+  Contextuals=Alternate,
+]
+
+\ActivateVerbatimLigatures{}
+
+\begin{document}
+  \begin{questions}
+    \question\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        Using Table 1.11, the ciphertext of the plaintext message is
+        \begin{equation*}
+          \text{\texttt{IBXFEPAQLBQAAXWQWIBXFSVAXW}}
+        \end{equation*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        % \setlength\tabcolsep{3pt}
+        \begin{table}
+          \ttfamily
+          \caption{The associated decryption table of Table 1.11.}
+          \label{table:decryption-table}
+          \begin{tblr}{
+              XXXXXXXXXXXXXXXXXXXXXXXXXX
+            }
+            \toprule
+            d & h & b & w & o & g & u & q & t & c & j & s & y & x & z & l & i & m & a & k & f & r & n & e & v & p \\
+            \midrule
+            A & B & C & D & E & F & G & H & I & J & K & L & M & N & O & P & Q & R & S & T & U & V & W & X & Y & Z \\
+            \bottomrule
+          \end{tblr}
+        \end{table}
+        \setlength\tabcolsep{6pt}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        Using~\autoref{table:decryption-table} to decrypt the message yields the following plaintext message:
+        \begin{equation*}
+          \text{\texttt{The secret password is sword fish.}}
+        \end{equation*}
+      \end{solution}
+    \end{parts}
+
+    \question\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Let \(g = \gcd(a,b)\). Then \(\exists A, B \in \Z\) such that \(a = gA\) and \(b = gB\). Then substituting the equations into the given one yields
+          \begin{align*}
+            1 &= au + bv    \\
+              &= gAu + gBv  \\
+              &= g(Au + Bv) \\
+          \end{align*}
+          where \(Au + Bv \in Z\). Therefore, \(g\) divides 1, implying that \(g = 1\).
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        It is not necessarily true that \(\gcd(a,b) = 6\). For example, take \(a = 1\) and \(b = 2\). Then
+        \begin{equation*}
+          a \cdot (-6) + b \cdot 6 = 6,
+        \end{equation*}
+        and yet \(\gcd(a,b) = 1\).
+
+        \begin{claim}
+          In general, all possible values of \(\gcd(a,b)\) divide 6, i.e., the RHS of \(au + bv = 6\).
+        \end{claim}
+        \begin{proof}
+          Suppose that \(au + bv = c\) has a solution. Let \(g = \gcd(a,b)\) and divide \(c\) by \(g\) with remainder to get
+          \begin{equation*}
+            c = gq + r, \quad \text{with}\ q,r \in \Z,\ 0 \le r < g.
+          \end{equation*}
+          Then by the extended euclidean algorithm, we can find \(x,y \in \Z\) such that \(g = ax + by\). Then
+          \begin{gather*}
+            au + bv = c = gq + r = (ax + by)q + r \\
+            \Rightarrow a(u - xq) + b(v - yq) = r.
+          \end{gather*}
+          \(g\) divides the LHS since \(g\) divides both \(a\) and \(b\), which implies that \(g \mid r\). But if \(0 \le r < g\) and \(g \mid r\), then we have that \(r = 0\). Therefore, \(c = gq\) which means that g divides c, where \(c = 6\) for the specific example.
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Let's subtract one equation from the other to get
+          \begin{align*}
+            au + bv - au_{0} - bv_{0} &= 0                                                      \\
+            a(u - u_{0})              &= -b(v - v_{0})\numberthis\label{eq:subtract-equations}.
+          \end{align*}
+          Dividing both sides by \(g\) yields
+          \begin{equation}\label{eq:divide-by-g}
+            \frac{a}{g}(u - u_{0}) = -\frac{b}{g}(v - v_{0})
+          \end{equation}
+          We also have that
+          \begin{align*}
+            au + bv                                 &= g \\
+            \Rightarrow \frac{a}{g}u + \frac{b}{g}v &= 1
+          \end{align*}
+          which, combined with part~(\ref{part@2@1}), gives \(\gcd(\frac{a}{g}, \frac{b}{g}) = 1\). By~\eqref{}
+        \end{proof}
+      \end{solution}
+    \end{parts}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+
+    \question{}
+    \begin{solution}
+
+    \end{solution}
+  \end{questions}
+\end{document}
