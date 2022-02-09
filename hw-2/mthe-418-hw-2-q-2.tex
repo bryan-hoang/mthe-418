@@ -1,0 +1,55 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{itemize}
+          \item \fbox{Yes}, \(e\) is indeed an encryption function.
+          \item It's associated decryption function \(d\) is \(\boxed{d_{k}(c)\equiv k-c \Mod{N}}\).
+        \end{itemize}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{itemize}
+          \item \fbox{No}, \(e\) is not an encryption function since it is not injective.
+          \item We can make it an encryption function by restricting the set of keys to \(\mathcal{K}\equiv(\Z/N\Z)^{*} \Mod{N}\). Then it will have an associated decrytion function of \(d_{k}(c)\equiv k^{-1}c \Mod{N}\)
+        \end{itemize}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{itemize}
+          \item \fbox{No}, \(e\) is not an encryption function since it is not injective.
+          \item We cannot make it an encryption function by restricting the set of keys.
+        \end{itemize}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

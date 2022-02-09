@@ -1,0 +1,52 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{equation*}
+          1101\,0110\,0101_{2} \Rightarrow 2^{11} + 2^{10} + 2^{8} + 2^{6} + 3^{5} + 2^{2} + 2^{0} = \boxed{3429_{10}} \in [0, 2^{12}-1].
+        \end{equation*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{equation*}
+          37853_{10} = 2^{15} + 2^{12} + 2^{9} + 2^{8} + 2^{7} + 2^{6} + 2^{4} + 2^{3} + 2^{2} + 2^{0} \Rightarrow 37853_{10} = \boxed{1001\,0011\,1101\,1101_{2}}.
+        \end{equation*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{equation*}
+          9487428_{10} = 2^{23} + 2^{20} + 2^{15} + 2^{14} + 2^{10} + 2^{6} + 2^{2} \Rightarrow 9487428_{10} = \boxed{1001\,0000\,1100\,0100\,0100\,0100_{2}}.
+        \end{equation*}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

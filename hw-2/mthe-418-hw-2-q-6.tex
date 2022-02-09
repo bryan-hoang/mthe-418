@@ -1,0 +1,43 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Suppose we have an algorithm that solves the Diffie-Hellman problem. Then the algorithm can use the given values of \(g\), \(g^{a}\), and \(g^{b}\) to compute \(g^{ab}\). We can then compare the value of \(g^{ab}\) with the value of \(C\) to check if they are equal, thus solving the Diffie-Hellman decision problem.
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        I think the Diffie-Hellman decision problem is hard because I can't foresee a way of solving it without first solving the Diffie-Hellman problem, which is a hard problem.
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

@@ -1,0 +1,63 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{equation*}
+          \tau\sigma^{2} = (\tau\sigma)\sigma = (\sigma^{2}\tau)\sigma = \sigma^{2}(\tau\sigma) = \sigma^{2}(\sigma^{2}\tau) = \sigma^{4}\tau = (\sigma^{3})\sigma\tau = \boxed{\sigma\tau}.
+        \end{equation*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{equation*}
+          \tau(\sigma\tau) = (\tau\sigma)\tau = (\sigma^{2}\tau)\tau = \sigma^{2}\tau^{2} = \boxed{\sigma^{2}}.
+        \end{equation*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{equation*}
+          (\sigma\tau)(\sigma\tau) = \sigma(\tau\sigma)\tau = \sigma(\sigma^{2}\tau)\tau = \sigma^{3}\tau^{2} = \boxed{e}.
+        \end{equation*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{equation*}
+          (\sigma\tau)(\sigma^{2}\tau) = \sigma(\tau\sigma)\sigma\tau = \sigma(\sigma^{2}\tau)\sigma\tau = \sigma^{3}(\tau\sigma)\tau = e(\sigma^{2}\tau)\tau = \sigma^{2}\tau^{2} = \boxed{\sigma^{2}}.
+        \end{equation*}
+      \end{solution}
+    \end{parts}
+
+    \begin{solution}
+      \(\mathcal{S}_{3}\) is not a commutative group. For instance, the third rule of multiplication says that \(\tau\sigma=\sigma^{2}\tau\ne\sigma\tau\).
+    \end{solution}
+  \end{questions}
+\end{document}

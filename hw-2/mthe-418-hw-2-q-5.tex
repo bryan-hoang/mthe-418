@@ -1,0 +1,46 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        Since \(2^{7} = 128 \equiv 13 \Mod{23}\), \(\log_{2}(13)=\boxed{7}\) in \(\mathbb{F}_{23}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        Since \(10^{11} \equiv 22 \Mod{47}\), \(\log_{10}(22)=\boxed{11}\) in \(\mathbb{F}_{47}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        Since second column of Table 2.1 on page 64 shows that \(627^{18} \equiv 608\ \Mod{941}\), \(\log_{627}(608)=\boxed{18}\) in \(\mathbb{F}_{941}\).
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

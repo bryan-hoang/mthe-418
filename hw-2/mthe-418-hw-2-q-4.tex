@@ -1,0 +1,78 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          \begin{align*}
+                                &\begin{cases}
+                                   x=a \\
+                                   x=b
+                                 \end{cases}                                  \\
+            \Rightarrow g^{a}   &\equiv h \equiv g^{b} \Mod{p}                 \\
+            \Rightarrow g^{a-b} &\equiv 1 \Mod{p}\numberthis\label{eq:a-power}
+          \end{align*}
+          But since \(g\) is a primitive root,
+          \begin{align*}
+            \ord(g)         &= p-1\numberthis\label{eq:a-order}                                                        \\
+            \Rightarrow p-1 &\divides a-b                       & &\text{by~\eqref{eq:a-power} and~\eqref{eq:a-order}} \\
+            \Rightarrow a   &\equiv b \Mod{p-1}.
+          \end{align*}
+        \end{proof}
+        The proven result implies that \(\log_{g}(h)\) is well-defined up to adding or subtracting multiples of \(p-1\), showing that the map (2.1) on page 63 is indeed well-defined.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Let \(h_{1}, h_{2} \in \mathbb{F}_{p}^{8}\). Starting with the LHS, we have
+          \begin{align*}
+            g^{\log_{g}(h_{1}h_{2})}         &\equiv h_{1} h_{2} \Mod{p}                               \\
+                                             &\equiv g^{\log_{g}(h_{1})} g^{\log_{g}(h_{2})} \Mod{p}   \\
+                                             &\equiv g^{\log_{g}(h_{1})+\log_{g}(h_{2})} \Mod{p}       \\
+            \Rightarrow \log_{g}(h_{1}h_{2}) &\equiv g^{\log_{g}(h_{1}) + \log_{g}(h_{2})}  \Mod{p-1}.
+          \end{align*}
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Let \(h\in\mathbb{F}_{p}^{8}\). Starting with the RHS, we have
+          \begin{align*}
+            g^{n\log_{g}(h)}             &= \Bigl(g^{\log_{g}(h)}\Bigr)^{n}  \\
+                                         &\equiv h^{n} \Mod{p}               \\
+                                         &\equiv g^{\log_{g}(h^{n})} \Mod{p} \\
+            \Rightarrow     n\log_{g}(h) &\equiv \log_{g}(h^{n}) \Mod{p-1}.
+          \end{align*}
+        \end{proof}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

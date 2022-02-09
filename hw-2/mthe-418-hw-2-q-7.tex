@@ -1,0 +1,59 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        Since \(A\equiv2^{947}\equiv 177 \Mod{1373}\), the value of Alice's public key is \(\boxed{A=177}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        Since \(c_{1}\equiv2^{877}\equiv719 \Mod{1373}\) and \(c_{2}\equiv583\cdot469^{877}\equiv623 \Mod{1373}\), the ciphertext Alice sends to Bob is \(\boxed{(c_{1},c_{2})=(719,623)}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        Decrypting the message yields
+        \begin{equation*}
+          (c_{1}^{a})^{-1} \cdot c_{2} \equiv (661^{299})^{-1} \cdot 1325 \equiv 645^{-1} \cdot 1325 \equiv 794 \cdot 1325 \equiv 332 \Mod{1373}.
+        \end{equation*}
+        Thus, the decrypted message is \(\boxed{m=332}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        The solution to the discrete logarithm problem \(2^{b}\equiv893 \Mod{1373}\) that Eve wants to sovle is \(\boxed{b=219}\). Now that we have Bob's private key, decrypting the message yields
+        \begin{equation*}
+          (c_{1}^{a})^{-1} \cdot c_{2} \equiv (693^{219})^{-1} \cdot 793 \equiv 431^{-1} \cdot 793 \equiv 532 \cdot 793 \equiv 365 \Mod{1373}.
+        \end{equation*}
+        Therefore, the message Alice sent to Bob is \(\boxed{m=365}\).
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}
