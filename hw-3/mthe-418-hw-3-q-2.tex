@@ -1,0 +1,69 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\date{2022-02-28}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \setcounter{partno}{3}
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \lim_{k\to\infty} \frac{(\ln k)^{375}}{k^{0.001}} &= \lim_{k\to\infty} \frac{375 (\ln k)^{374} k^{-1}}{0.001 k^{-0.999}} & &\text{by L'Hopital's rule} \\
+                                                            &= \lim_{k\to\infty} \frac{375 (\ln k)^{374}}{0.001 k^{0.001}}.                                      \\
+          \intertext{Applying L'Hopital's rule over and over again yields}
+          \lim_{k\to\infty} \frac{(\ln k)^{375}}{k^{0.001}} &= \lim_{k\to\infty} \frac{375!}{0.001^{375} k^{0.001}}                                              \\
+                                                            &= 0                                                                                                 \\
+                                                            &< \infty
+        \end{align*}
+        \(\therefore\ (\ln k)^{375} = \mathcal{O}(k^{0.001})\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \lim_{k\to\infty} \frac{k^{2} 2^{k}}{e^{2k}} &< \lim_{k\to\infty} \frac{k^{2} e^{k}}{e^{2k}} \\
+                                                       &= \lim_{k\to\infty} \frac{k^{2}}{e^{k}}        \\
+                                                       &= 0                                            \\
+                                                       &< \infty.
+        \end{align*}
+        \(\therefore\ k^{2} 2^{k} = \mathcal{O}(e^{2k})\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \lim_{N\to\infty} \frac{N^{10}2^{N}}{e^{N}} &= \lim_{N\to\infty} \frac{N^{10}}{\bigl(\frac{1}{2}\bigr)^{N} e^{N}} \\
+                                                      &=\lim_{N\to\infty} \frac{N^{10}}{\bigl(\frac{e}{2}\bigr)^{N}}        \\
+                                                      &= 0                                                                  \\
+                                                      &< \infty.
+        \end{align*}
+        \(\therefore\ N^{10} 2^{N} = \mathcal{O}(e^{N})\).
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

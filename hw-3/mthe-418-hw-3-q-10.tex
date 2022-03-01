@@ -1,0 +1,105 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\date{2022-02-28}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \(n - 1 = 1104 = 2^{4} \cdot 69\).
+        \begin{align*}
+          2^{69}         &\equiv -138 \Mod{1105} \\
+          2^{69 \cdot 2} &\equiv 259 \Mod{1105}  \\
+          2^{69 \cdot 4} &\equiv -324 \Mod{1105} \\
+          2^{69 \cdot 8} &\equiv 1 \Mod{1105}    \\
+        \end{align*}
+        Thus, 2 is a Miller-Rabin witness for the compositeness of 1105, implying that 1105 is a composite number.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \(n - 1 = 294408 = 2^{3} \cdot 36801\).
+        \begin{align*}
+          2^{36801}         &\equiv 512 \Mod{294409}    \\
+          2^{36801 \cdot 2} &\equiv -32265 \Mod{294409} \\
+          2^{36801 \cdot 4} &\equiv 1 \Mod{294409}      \\
+        \end{align*}
+        Thus, 2 is a Miller-Rabin witness for the compositeness of 294409 , implying that 294409 is a composite number.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \(n - 1 = 294438 = 2^{1} \cdot 147219\).
+        \begin{equation*}
+          2^{147219} \equiv 1 \Mod{294439}
+        \end{equation*}
+        Thus 2 is not a Miller-Rabin witness for 29443. Nine other numbers that are not Miller-Rabin witnesses of 29443 are: 3, 4, 5, 6, 7, 8, 9, 10, 11. Therefore, 294409 is probably prime.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \(n - 1 = 118901508 = 2^{2} \cdot 29725377\).
+        \begin{align*}
+          2^{29725377}         &\equiv 7906806 \Mod{118901508} \\
+          2^{29725377 \cdot 2} &\equiv -1 \Mod{118901508}
+        \end{align*}
+        Thus 2 is not a Miller-Rabin witness for 118901509. Nine other numbers that are not Miller-Rabin witnesses of 118901509 are: 3, 4, 5, 6, 7, 8, 9, 10, 11. Therefore, 118901509 is probably prime.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \(n - 1 = 118901520 = 2^{4} \cdot 7431345\).
+        \begin{align*}
+          2^{7431345}         &\equiv 45274074 \Mod{118901521} \\
+          2^{7431345 \cdot 2} &\equiv 1758249 \Mod{118901521}  \\
+          2^{7431345 \cdot 8} &\equiv 1 \Mod{118901521}        \\
+          2^{7431345 \cdot 4} &\equiv 1 \Mod{118901521}        \\
+        \end{align*}
+        Thus, 2 is a Miller-Rabin witness for the compositeness of 118901521, implying that 118901521 is a composite number.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \(n - 1 = 118901526 = 2^{1} \cdot 59450763\).
+        \begin{equation*}
+          2^{59450763} \equiv 1 \Mod{118901527}
+        \end{equation*}
+        Thus 2 is not a Miller-Rabin witness for 118901527. Nine other numbers that are not Miller-Rabin witnesses of 118901527 are: 3, 4, 5, 6, 7, 8, 9, 10, 11. Therefore, 118901527 is probably prime.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \(n - 1 = 118915386 = 2^{1} \cdot 59457693\).
+        \begin{equation*}
+          2^{59457693} \equiv -5081012 \Mod{118915387}
+        \end{equation*}
+        Thus, 2 is a Miller-Rabin witness for the compositeness of 118915387, implying that 118915387 is a composite number.
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

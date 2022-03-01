@@ -27,9 +27,114 @@
   \begin{questions}
     \setcounter{question}{\questionnumber}
     \addtocounter{question}{-1}
-    \question{}
-    \begin{solution}
-      42.
-    \end{solution}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          \proofpart{} Proving that \(\phi(e_{G}) = e_{H}\).
+
+          Beginning with the LHS of the equation,
+          \begin{align*}
+            \phi(e_{G})                                                            &= \phi(e_{G} * e_{G})                                                                \\
+                                                                                   &= \phi(e_{G}) * \phi(e_{G})      & &\because\text{ \(\phi\) is a group homomorphism} \\
+            \Rightarrow \Biggl(\phi(e_{G}) * \phi(e_{G})\Biggr) * \phi(e_{G})^{-1} &= \phi(e_{G}) * \phi(e_{G})^{-1}                                                     \\
+            \phi(e_{G}) * \Biggl(\phi(e_{G}) * \phi(e_{G})^{-1}\Biggr)             &= e_{H}                                                                              \\
+            \phi(e_{G}) * e_{H}                                                    &= e_{H}                                                                              \\
+            \phi(e_{G})                                                            &= e_{H}.
+          \end{align*}
+          \proofpart{} Proving that \(\phi(g^{-1}) = \phi(g)^{-1}\).
+
+          Let \(g \in G\). Then
+          \begin{align*}
+            \phi(g) * \phi(g^{-1}) &= \phi(g * g^{-1}) & &\because \text{ \(\phi\) is a group homomorphism} \\
+                                   &= \phi(e_{G})                                                           \\
+                                   &= e_{H}            & &\text{by the first part of the proof,}
+          \end{align*}
+          and
+          \begin{align*}
+            \phi(g^{-1})  * \phi(g) &= \phi(g^{-1} * g) & &\because \text{ \(\phi\) is a group homomorphism} \\
+                                    &= \phi(e_{G})                                                           \\
+                                    &= e_{H}            & &\text{by the first part of the proof.}
+          \end{align*}
+          Since \(\phi(g) * \phi(g^{-1}) = \phi(g^{-1})  * \phi(g) = e_{H}\), we have that \(\phi(g^{-1})\) is the unique inverse of \(\phi(g)\) in \(H\). Thus, we have shown that \(\phi(g^{-1}) = \phi(g)^{-1}\).
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Let \(g_{1}, g_{2} \in G\). We have
+          \begin{align*}
+            \phi(g_{1} * g_{2}) &= (g_{1} * g_{2})^{2}                                                            \\
+                                &= (g_{1} * g_{2}) * (g_{1} * g_{2})                                              \\
+                                &= (g_{1} * g_{1}) * (g_{2} * g_{2}) & &\because \text{ the group is commutative} \\
+                                &= g_{1}^{2} * g_{2}^{2}                                                          \\
+                                &= \phi(g_{1}) * \phi(g_{2}).
+          \end{align*}
+          Thus, the map \(\phi\) is a homomorphism.
+        \end{proof}
+        \begin{example}
+          Consider the group defined by the set of all 2-by-2 real matrices \(G = \mathcal{M}_{2}(\R)\) and the operation of matrix multiplication \(*\). Let \(g_{1} = \begin{psmallmatrix}3 & 4\\1 & 2\end{psmallmatrix}\) and \(g_{2} = \begin{psmallmatrix}6 & 2\\3 & 2\end{psmallmatrix}\). Then
+          \begin{align*}
+            \phi(g_{1} * g_{2}) &= (g_{1} * g_{2})^{2}                                                                                                                                                                                   \\
+                                &= (g_{1} * g_{2}) * (g_{1} * g_{2})                                                                                                                                                                     \\
+                                &= \Biggl(\begin{bmatrix}3 & 4\\1 & 2\end{bmatrix} * \begin{bmatrix}6 & 2\\3 & 2\end{bmatrix}\Biggr) * \Biggl(\begin{bmatrix}3 & 4\\1 & 2\end{bmatrix} * \begin{bmatrix}6 & 2\\3 & 2\end{bmatrix}\Biggr) \\
+                                &= \begin{bmatrix}30 & 14\\12 & 6\end{bmatrix} * \begin{bmatrix}30 & 14 \\12 & 6\end{bmatrix}                                                                                                            \\
+                                &= \begin{bmatrix}1068 & 504\\432 & 204\end{bmatrix}                                                                                                                                                     \\
+                                &\ne \begin{bmatrix}1026 & 408\\402 & 160\end{bmatrix}                                                                                                                                                   \\
+                                &= \begin{bmatrix}13 & 20\\5 & 8\end{bmatrix} * \begin{bmatrix}42 & 16\\24 & 10\end{bmatrix}                                                                                                             \\
+                                &= \Biggl(\begin{bmatrix}3 & 4\\1 & 2\end{bmatrix} * \begin{bmatrix}3 & 4\\1 & 2\end{bmatrix}\Biggr) * \Biggl(\begin{bmatrix}6 & 2\\3 & 2\end{bmatrix} * \begin{bmatrix}6 & 2\\3 & 2\end{bmatrix}\Biggr)
+                                &= (g_{1} * g_{1}) * (g_{2} * g_{2})                                                                                                                                                                     \\
+                                &= g_{1}^{2} * g_{2}^{2}                                                                                                                                                                                 \\
+                                &= \phi(g_{1}) * \phi(g_{2}).
+          \end{align*}
+        \end{example}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Let \(g_{1}, g_{2} \in G\). We have
+          \begin{align*}
+            \phi(g_{1} * g_{2}) &= (g_{1} * g_{2})^{-1}                                                        \\
+                                &= g_{2}^{-1} * g_{1}^{-1}                                                     \\
+                                &= g_{1}^{-1} * g_{2}^{-1}    & &\because\ \text{\(G\) is a commutative group} \\
+                                &= \phi(g_{1}) * \phi(g_{2}).
+          \end{align*}
+        \end{proof}
+        \begin{example}
+          Consider the group defined by the set of all 2-by-2 real matrices \(G = \mathcal{M}_{2}(\R)\) and the operation of matrix multiplication \(*\). Let \(g_{1} = \begin{psmallmatrix}3 & 4\\1 & 2\end{psmallmatrix}\) and \(g_{2} = \begin{psmallmatrix}6 & 2\\3 & 2\end{psmallmatrix}\). Then
+          \begin{align*}
+            \phi(g_{1} * g_{2}) &= (g_{1} * g_{2})^{-1}                    \\
+                                &= g_{2}^{-1} * g_{1}^{-1}                 \\
+                                &= \begin{bmatrix}
+                                     6 & 2 \\
+                                     3 & 2
+                                   \end{bmatrix}^{-1} * \begin{bmatrix}
+                                                          3 & 4 \\
+                                                          1 & 2
+                                                        \end{bmatrix}^{-1} \\
+                                &= \frac{1}{6} \begin{bmatrix}
+                                                 3  & -7 \\
+                                                 -6 & 15
+                                               \end{bmatrix}              \\
+                                &\ne \frac{1}{12} \begin{bmatrix}
+                                                    16  & -28 \\
+                                                    -11 & 20
+                                                  \end{bmatrix}           \\
+                                &= \begin{bmatrix}
+                                     3 & 4 \\
+                                     1 & 2
+                                   \end{bmatrix}^{-1} * \begin{bmatrix}
+                                                          6 & 2 \\
+                                                          3 & 2
+                                                        \end{bmatrix}^{-1} \\
+                                &= g_{1}^{-1} * g_{2}^{-1}                 \\
+                                &= \phi(g_{1}) * \phi(g_{2}).
+          \end{align*}
+        \end{example}
+      \end{solution}
+    \end{parts}
   \end{questions}
 \end{document}

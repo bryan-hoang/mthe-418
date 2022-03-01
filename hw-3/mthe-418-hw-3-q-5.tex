@@ -1,0 +1,44 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\date{2022-02-28}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \addtocounter{partno}{2}
+      \part{}
+      \begin{solution}
+        \(1159 = 19 \cdot 61\) and \((19 - 1)\cdot (61 - 1) = 1080\). With \(e = 73\), the congruence \(73d \equiv 1 \Mod{1080}\) has the solution \(d \equiv 557 \Mod{1080}\). Therefore, \(\boxed{x \equiv 614^{577} \equiv 158 \Mod{1159}}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \(8023 = 71 \cdot 113\) and \((71 - 1) \cdot (113 - 1) = 7840\). With \(e = 751\), the congruence \(751d \equiv 1 \Mod{7840}\) has the solution \(d \equiv 7151 \Mod{7840}\). Therefore, \(\boxed{x \equiv 677^{7151} \equiv 1355 \Mod{8023}}\).
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

@@ -1,0 +1,48 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\date{2022-02-28}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        To solve \(11^{x} = 21\) in \(\mathbb{F}_{71}\), we first note that 11 has order 70 in \(\mathbb{F}_{71}\). Let \(n = 1 + \lfloor 70 \rfloor = 9\). After writing code to implement the algorithm, we find that \(\boxed{x = 37}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        To solve \(156^{x} = 116\) in \(\mathbb{F}_{593}\), we first note that 156 has order 148 in \(\mathbb{F}_{593}\). Let \(n = 1 + \lfloor 148 \rfloor = 13\). After writing code to implement the algorithm, we find that \(\boxed{x = 59}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        To solve \(650^{x} = 2213\) in \(\mathbb{F}_{3571}\), we first note that 650 has order 510 in \(\mathbb{F}_{3571}\). Let \(n = 1 + \lfloor 510 \rfloor = 23\). After writing code to implement the algorithm, we find that \(\boxed{x = 319}\).
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}
