@@ -1,0 +1,54 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        Samantha's public modulus is \(N = pq = 541 \cdot 1223 = \boxed{661643}\).
+
+        Samantha's private signing key, \(d\), can be obtained by solving for \(d\) such that
+        \begin{align*}
+          de                        &\equiv 1 \pmod{(p-1)(q-1)} \\
+          159853d                   &\equiv 1 \pmod{659880}     \\
+          \Rightarrow \alignedbox{d &= 561517}.
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        The signature, \(S\), is
+        \begin{align*}
+          S                         &\equiv D^{d} \pmod{N}                \\
+          S                         &\equiv 630579^{561517} \pmod{661643} \\
+          S                         &\equiv 206484 \pmod{661643}          \\
+          \Rightarrow \alignedbox{S &= 206484}.
+        \end{align*}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

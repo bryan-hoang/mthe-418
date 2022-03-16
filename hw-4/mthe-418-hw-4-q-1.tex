@@ -1,0 +1,108 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},z
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          If \(a\) and \(b\) are cubic residues modulo \(p\), then \(p \nmid a\) and \(p \nmid b\). Thus, \(p \nmid ab\). We also have that \(\exists\ c, d \in\Z\) such that
+          \begin{equation*}
+            a \equiv c^{3} \pmod{p} \qquad \text{and} \qquad b \equiv d^{3} \pmod{p}.
+          \end{equation*}
+          It then follows that with \(ab \in\Z\), \(ab \equiv (cd)^{3} \pmod{p}\). Therefore, \(ab\) is a cubic residue modulo \(p\).
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{example}
+          Let \(p = 7\), \(a \equiv 2 \pmod{p}\), and \(b \equiv 4 \pmod{p}\). Then \(ab \equiv 3 \pmod{p}\). But
+          \begin{align*}
+            1^{3}    &\equiv 1 \pmod{p}  \\
+            2^{3}    &\equiv 1 \pmod{p}  \\
+            3^{3}    &\equiv 6 \pmod{p}  \\
+            4^{3}    &\equiv 1 \pmod{p}  \\
+            5^{3}    &\equiv 6 \pmod{p}  \\
+            6^{3}    &\equiv 6 \pmod{p}  \\
+            (ab)^{3} &\equiv 1 \pmod{p}.
+          \end{align*}
+          Therefore, \(a\), \(b\), and \(ab\) are not cubic residues modulo \(p\).
+        \end{example}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          \begin{proofpart}
+            (\(\Rightarrow\)) First, let's suppose that \(a\) is a cubic residue modulo \(p\). Then \(\exists b \in \Z : a \equiv b^{3} \pmod{p}\). We also have that since \(g\) is a primitive root modulo \(p\), \(\exists c \in \Z : b \equiv g^{c} \pmod{p}\). Let \(x = \log_{g}(a)\). Then
+            \begin{align*}
+                                &\begin{cases}
+                                   g^{x} \equiv a \pmod{p} \\
+                                   a \equiv b^{3} \pmod{p}
+                                 \end{cases}     \\
+              \Rightarrow g^{x} &\equiv b^{3} \pmod{p}       \\
+              g^{x}             &\equiv (g^{c})^{3} \pmod{p} \\
+              g^{x}             &\equiv g^{3c} \pmod{p}      \\
+              \Rightarrow x     &= 3c                        \\
+              \Rightarrow 3     &\mid x                      \\
+              \Rightarrow 3     &\mid \log_{g}(a).
+            \end{align*}
+          \end{proofpart}
+
+          \begin{proofpart}
+            (\(\Leftarrow\)) Next, suppose that \(3 \mid \log_{g}(a)\). Then \(\exists b \in \Z : \log_{g}(a) = 3b\). Letting \(x = \log_{g}(a)\), we have
+            \begin{align*}
+              g^{x}       &\equiv a \pmod{p}                                                                          \\
+              g^{3b}      &\equiv a \pmod{p}                                                                          \\
+              (g^{b})^{3} &\equiv a \pmod{p}                                                                          \\
+              c^{3}       &\equiv a \pmod{p} & &\text{where \(c \equiv g^{b} \pmod{p}\) as \(g\) is a primitive root}
+            \end{align*}
+            Thus, \(a\) is a cubic residue modulo \(p\).
+          \end{proofpart}
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          Let \(p \equiv 2 \pmod{3}\), let \(a \in \Z\), and let \(g\) be a primitive root modulo \(p\). Since \(p \equiv 2 \pmod{3}\), then \(\exists b \in \Z : p = 3b + 2\). By Fermat's Little Theorem, it follows that
+          \begin{align*}
+            g^{p-1}                &= g^{3b + 1}       \\
+                                   &\equiv 1 \pmod{p}  \\
+            \Rightarrow g^{6b + 2} &\equiv 1 \pmod{p}.
+          \end{align*}
+          Also since \(g\) is a primitive root modulo, \(\exists c \in \Z : a = g^{c} \pmod{p}\). Then by the previous two results,
+          \begin{equation*}
+            a \equiv g^{c} \equiv g^{c + 3b + 1} \equiv g^{c + 6b + 2} \pmod{p}.
+          \end{equation*}
+          Exactly one of the elements in the set \(\{c, c + 3b + 1, c + 3b + 2\}\) is divisible by 3. Let \(x = \log_{g}(a)\) denote this element. Then \(3 \mid x\). By part~(\ref{part@1@3}), we have that \(a\) is cube modulo \(p\).
+        \end{proof}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

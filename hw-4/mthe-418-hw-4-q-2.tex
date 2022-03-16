@@ -1,0 +1,155 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        To decrypt the first ciphertext block \(c = 1794677960\), we compute
+        \begin{align*}
+          \legendre{1794677960}{32411} &= \legendre{16068}{32411}                        \\
+                                       &= \legendre{2}{32411}^{2} \legendre{4017}{32411} \\
+                                       &= \legendre{4017}{32411}                         \\
+                                       &= \legendre{32411}{4017}                         \\
+                                       &= \legendre{275}{4017}                           \\
+                                       &= \legendre{167}{275}                            \\
+                                       &= -\legendre{275}{167}                           \\
+                                       &= -\legendre{108}{167}                           \\
+                                       &= -\legendre{2}{167}^{2} \legendre{27}{167}      \\
+                                       &= \legendre{167}{27}                             \\
+                                       &= \legendre{5}{27}                               \\
+                                       &= \legendre{27}{5}                               \\
+                                       &= \legendre{2}{5}                                \\
+                                       &= -1,
+        \end{align*}
+        which gives the plaintext bit \(m = 1\).
+
+        \newpage
+
+        To decrypt the second ciphertext block \(c = 525734818\), we compute
+        \begin{align*}
+          \legendre{525734818}{32411} &= \legendre{28398}{32411}                                           \\
+                                      &= \legendre{2}{32411} \legendre{3}{32411} \legendre{4733}{32411}    \\
+                                      &= \legendre{32411}{3} \legendre{32411}{4733}                        \\
+                                      &= \legendre{2}{3} \legendre{4013}{4733}                             \\
+                                      &= -\legendre{4733}{4013}                                            \\
+                                      &= -\legendre{720}{4013}                                             \\
+                                      &= -\legendre{2}{4013}^{4} \legendre{2}{4013}^{2} \legendre{5}{4013} \\
+                                      &= -\legendre{4013}{5}                                               \\
+                                      &= -\legendre{3}{5}                                                  \\
+                                      &= -\legendre{5}{3}                                                  \\
+                                      &= -\legendre{2}{3}                                                  \\
+                                      &= 1,
+        \end{align*}
+        which gives the plaintext bit \(m = 0\).
+
+        \newpage
+
+        To decrypt the third ciphertext block \(c = 420526487\), we compute
+        \begin{align*}
+          \legendre{420526487}{32411} &= \legendre{26173}{32411}                                       \\
+                                      &= \legendre{7}{32411} \legendre{3739}{32411}                    \\
+                                      &= \legendre{32411}{7} \legendre{32411}{3739}                    \\
+                                      &= \legendre{1}{7} \legendre{2499}{3739}                         \\
+                                      &= \legendre{3}{3739} \legendre{7}{3739}^{2} \legendre{17}{3739} \\
+                                      &= -\legendre{3739}{3} \legendre{3739}{17}                       \\
+                                      &= -\legendre{1}{3} \legendre{16}{17}                            \\
+                                      &= -\legendre{2}{17}^{4}                                         \\
+                                      &= -1,
+        \end{align*}
+        which gives the plaintext bit \(m = 1\).
+
+        Therefore, Alice's plaintext message is \(\boxed{(1, 0, 1)}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        The factorization of \(N\) is \(N = pq = 47 \cdot 67\).
+
+        To decrypt the first ciphertext block \(c = 2322\), we compute
+        \begin{align*}
+          \legendre{2322}{47} &= \legendre{19}{47}     \\
+                              &= -\legendre{47}{19}    \\
+                              &= -\legendre{9}{19}     \\
+                              &= -\legendre{3}{19}^{2} \\
+                              &= -1
+        \end{align*}
+        which gives the plaintext bit \(m = 1\).
+
+        To decrypt the second ciphertext block \(c = 719\), we compute
+        \begin{align*}
+          \legendre{719}{47} &= \legendre{14}{47}                 \\
+                             &= \legendre{2}{47} \legendre{7}{47} \\
+                             &= -\legendre{47}{7}                 \\
+                             &= -\legendre{5}{7}                  \\
+                             &= -\legendre{7}{5}                  \\
+                             &= -\legendre{2}{5}                  \\
+                             &= 1
+        \end{align*}
+        which gives the plaintext bit \(m = 0\).
+
+        To decrypt the third ciphertext block \(c = 202\), we compute
+        \begin{align*}
+          \legendre{202}{47} &= \legendre{14}{47}                 \\
+                             &= \legendre{2}{47} \legendre{7}{47} \\
+                             &= -\legendre{47}{7}                 \\
+                             &= -\legendre{5}{7}                  \\
+                             &= -\legendre{7}{5}                  \\
+                             &= -\legendre{2}{5}                  \\
+                             &= 1
+        \end{align*}
+        which gives the plaintext bit \(m = 0\).
+
+        Therefore, Alice's plaintext message is \(\boxed{(1, 0, 0)}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        To encrypt the first message bit \(m = 1\) using \(r = 705130839\), we compute
+        \begin{align*}
+          c &\equiv ar^{2} \pmod{781044643}                        \\
+            &\equiv 568980706 \cdot 705130839^{2} \pmod{781044643} \\
+            &\equiv 517254876 \pmod{781044643}.
+        \end{align*}
+        To encrypt the second message bit \(m = 1\) using \(r = 631364468\), we compute
+        \begin{align*}
+          c &\equiv ar^{2} \pmod{781044643}                        \\
+            &\equiv 568980706 \cdot 631364468^{2} \pmod{781044643} \\
+            &\equiv 4308279 \pmod{781044643}
+        \end{align*}
+
+        To encrypt the third message bit \(m = 0\) using \(r = 67651321\), we compute
+        \begin{align*}
+          c &\equiv ar^{2} \pmod{781044643}                       \\
+            &\equiv 568980706 \cdot 67651321^{2} \pmod{781044643} \\
+            &\equiv 660699010 \pmod{781044643}
+        \end{align*}
+        Therefore, the ciphertext for \((1, 1, 0)\) is \(\boxed{(517254876, 4308279, 660699010)}\).
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

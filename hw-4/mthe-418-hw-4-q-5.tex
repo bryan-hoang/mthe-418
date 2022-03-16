@@ -1,0 +1,55 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        Samantha's public verification key is
+        \begin{align*}
+          A            &\equiv g^{s} \pmod{p}         \\
+                       &\equiv 437^{6104} \pmod{6961} \\
+          \alignedbox{ &\equiv 2065 \pmod{6961}}.
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          S_{1} &\equiv D^{k} \pmod{p}                                \\
+                &\equiv 437^{4451} \pmod{6961}                        \\
+                &\equiv 3534 \pmod{6961},                             \\
+          S_{2} &\equiv (D - aS_{1})k^{-1} \pmod{p-1}                 \\
+                &\equiv (5584 - 6104 \cdot 3534)4451^{-1} \pmod{6960} \\
+                &\equiv (5584 - 2496)491 \pmod{6960}                  \\
+                &\equiv 5888 \pmod{6960}.
+        \end{align*}
+        Therefore, the signature is \(\boxed{(3534, 5888)}\).
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

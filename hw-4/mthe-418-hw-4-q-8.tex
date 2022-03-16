@@ -1,0 +1,110 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        Computing \(P \oplus Q\) yields
+        \begin{align*}
+          \lambda                            &= \frac{y_{2} - y_{1}}{x_{2} - x_{1}}           \\
+                                             &= \frac{-5 - 2}{3 - 0}                          \\
+                                             &= -\frac{7}{3},                                 \\
+          x_{3}                              &= \lambda^{2} - x_{1} - x_{2}                   \\
+                                             &= \Bigl(-\frac{7}{3}\Bigr)^{2} - 0 - 3          \\
+                                             &= \frac{22}{9},                                 \\
+          y_{3}                              &= \lambda(x_{1} - x_{3}) - y_{1}                \\
+                                             &= -\frac{7}{3} \Bigl(0 - \frac{22}{9}\Bigr) - 2 \\
+                                             &= \frac{100}{27},                               \\
+          \Rightarrow \alignedbox{P \oplus Q &= \Bigl(\frac{22}{9}, \frac{100}{27}\Bigr)}.
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        Computing \(P \oplus P\) yields
+        \begin{align*}
+          \lambda                            &= \frac{3x_{1}^{2} + A}{2y_{1}}                \\
+                                             &= \frac{3 \cdot 0^{2} - 2}{2 \cdot 2}          \\
+                                             &= -\frac{1}{2},                                \\
+          x_{3}                              &= \lambda^{2} - x_{1} - x_{2}                  \\
+                                             &= \Bigl(-\frac{1}{2}\Bigr)^{2} - 0 - 0         \\
+                                             &= \frac{1}{4},                                 \\
+          y_{3}                              &= \lambda(x_{1} - x_{3}) - y_{1}               \\
+                                             &= -\frac{1}{2} \Bigl(0 - \frac{1}{4}\Bigr) - 2 \\
+                                             &= -\frac{15}{8},                               \\
+          \Rightarrow \alignedbox{P \oplus P &= \Bigl(\frac{1}{4}, -\frac{15}{8}\Bigr)}.
+        \end{align*}
+
+        Computing \(Q \oplus Q\) yields
+        \begin{align*}
+          \lambda                            &= \frac{3x_{1}^{2} + A}{2y_{1}}                   \\
+                                             &= \frac{3 \cdot 3^{2} - 2}{2 \cdot (-5)}          \\
+                                             &= -\frac{5}{2},                                   \\
+          x_{3}                              &= \lambda^{2} - x_{1} - x_{2}                     \\
+                                             &= \Bigl(-\frac{5}{2}\Bigr)^{2} - 3 - 3            \\
+                                             &= \frac{1}{4},                                    \\
+          y_{3}                              &= \lambda(x_{1} - x_{3}) - y_{1}                  \\
+                                             &= -\frac{5}{2} \Bigl(3 - \frac{1}{4}\Bigr) - (-5) \\
+                                             &= -\frac{15}{8},                                  \\
+          \Rightarrow \alignedbox{Q \oplus Q &= \Bigl(\frac{1}{4}, -\frac{15}{8}\Bigr)}.
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        Computing \(P \oplus P \oplus P\) yields
+        \begin{align*}
+          \lambda                                     &= \frac{y_{2} - y_{1}}{x_{2} - x_{1}}                        \\
+                                                      &= \frac{2 - (-\frac{15}{8})}{0 - \frac{1}{4}}                \\
+                                                      &= -\frac{31}{2},                                             \\
+          x_{3}                                       &= \lambda^{2} - x_{1} - x_{2}                                \\
+                                                      &= \Bigl(-\frac{31}{2}\Bigr)^{2} - \frac{1}{4} - 0            \\
+                                                      &= 240,                                                       \\
+          y_{3}                                       &= \lambda(x_{1} - x_{3}) - y_{1}                             \\
+                                                      &= -\frac{31}{2} \Bigl(\frac{1}{4} - 240\Bigr) + \frac{15}{8} \\
+                                                      &= 3718,                                                      \\
+          \Rightarrow \alignedbox{P \oplus P \oplus P &= \Bigl(240, 3718\Bigr)}.
+        \end{align*}
+
+        Computing \(Q \oplus Q \oplus Q\) yields
+        \begin{align*}
+          \lambda                                     &= \frac{y_{2} - y_{1}}{x_{2} - x_{1}}                                     \\
+                                                      &= \frac{-5 - (-\frac{15}{8})}{3 - \frac{1}{4}}                            \\
+                                                      &= -\frac{25}{22},                                                         \\
+          x_{3}                                       &= \lambda^{2} - x_{1} - x_{2}                                             \\
+                                                      &= \Bigl(-\frac{25}{22}\Bigr)^{2} - \frac{1}{4} - 3                        \\
+                                                      &= -\frac{237}{121},                                                       \\
+          y_{3}                                       &= \lambda(x_{1} - x_{3}) - y_{1}                                          \\
+                                                      &= -\frac{25}{22} \Bigl(\frac{1}{4} + \frac{237}{121}\Bigr) + \frac{15}{8} \\
+                                                      &= -\frac{845}{1331},                                                      \\
+          \Rightarrow \alignedbox{Q \oplus Q \oplus Q &= \Bigl(-\frac{237}{121}, -\frac{845}{1331}\Bigr)}.
+        \end{align*}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}
