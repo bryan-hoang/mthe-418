@@ -29,7 +29,22 @@
     \begin{parts}
       \part{}
       \begin{solution}
-        42.
+        \begin{table}
+          \caption{Computing \(19 \cdot (24, 14)\) on \(Y^{2} = X^{3} + 23X + 13 \Mod{83}\).}
+          \begin{tabular}{*{4}{c}}
+            \toprule
+            Step \(i\) & \(n\) & \(Q = 2^{i} P\) & \(R\)           \\
+            \midrule
+            0          & 19    & (24, 14)        & \(\mathcal{O}\) \\
+            1          & 9     & (30, 8)         & (24, 14)        \\
+            2          & 4     & (24, 69)        & (30, 75)        \\
+            3          & 2     & (30, 75)        & (30, 75)        \\
+            4          & 1     & (24, 14)        & (30, 75)        \\
+            5          & 0     & (30, 8)         & (24, 69)        \\
+            \bottomrule
+          \end{tabular}
+        \end{table}
+        Therefore, \(\boxed{19 \cdot (24, 14) = (24, 69)}\).
       \end{solution}
     \end{parts}
   \end{questions}
