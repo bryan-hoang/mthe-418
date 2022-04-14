@@ -1,0 +1,72 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \det(L)                                                    &= \det\begin{pmatrix}4&-57\\13&-45\end{pmatrix}    \\
+          \alignedbox{                                               &= 561},                                            \\
+          \sqrt{\frac{\det(L)}{\norm{\bm{v}_{1}} \norm{\bm{v}_{2}}}} &\approx \sqrt{\frac{561}{13.60 \cdot 72.6}}        \\
+          \alignedbox{                                               &\approx 0.75},                                     \\
+          \sqrt{\frac{\det(L)}{\norm{\bm{w}_{1}} \norm{\bm{w}_{2}}}} &\approx \sqrt{\frac{561}{27027.79 \cdot 17091.88}} \\
+          \alignedbox{                                               &\approx 0.0011}.
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \bm{e}                         &= \underbrace{-6823.12}_{t_{1}} \bm{v}_{1} + \underbrace{-3204.08}_{t_{2}} \bm{v}_{2} \\
+          \Rightarrow                    &\begin{cases}
+                                            a_{1} = \nint{t_{1}} = -6823 \\
+                                            a_{2} = \nint{t_{2}} = -3204
+                                          \end{cases}                                  \\
+          \Rightarrow \bm{v}             &= -6823 \bm{v}_{1} - 3204 \bm{v}_{2}                                                  \\
+                                         &= (155336, 55481)                                                                     \\
+                                         &= 8 \bm{w}_{1} + 3 \bm{w}_{2},                                                        \\
+          \Rightarrow \alignedbox{\bm{m} &= (8, 3)}.
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \bm{e}                         &= \underbrace{-8.39}_{t_{1}} \bm{w}_{1} + \underbrace{-22.92}_{t_{2}} \bm{w}_{2} \\
+          \Rightarrow                    &\begin{cases}
+                                            a_{1} = \nint{t_{1}} = -8 \\
+                                            a_{2} = \nint{t_{2}} = -23
+                                          \end{cases}                                \\
+          \Rightarrow \bm{v}             &= - 8 \bm{w}_{1} - 23 \bm{w}_{2},                                                \\
+          \Rightarrow \alignedbox{\bm{m} &= (-8, -23)}                                                                     \\
+                                         &\ne (8, 3).
+        \end{align*}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

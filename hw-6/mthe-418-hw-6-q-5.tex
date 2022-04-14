@@ -1,0 +1,97 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \bm{w}                                         &= \underbrace{6.22}_{t_{1}} \bm{v}_{1} + \underbrace{133.98}_{t_{2}} \bm{v}_{2} \\
+          \Rightarrow                                    &\begin{cases}
+                                                            a_{1} = \nint{t_{1}} = 6 \\
+                                                            a_{2} = \nint{t_{2}} = 134
+                                                          \end{cases}                               \\
+          \Rightarrow \bm{v}                             &= 6 \bm{v}_{1} + 134 \bm{v}_{2}                                                 \\
+                                                         &= \boxed{(43086, 11448)}                                                        \\
+          \Rightarrow \alignedbox{\norm{\bm{v} - \bm{w}} &= 107.15}.
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \sqrt{\frac{\det(L)}{\norm{\bm{v}_{1}} \norm{\bm{v}_{2}}}} &\approx \sqrt{\frac{158709}{486.2 \cdot 329.2}} \\
+          \alignedbox{                                               &\approx 0.9958}                                 \\
+                                                                     &\approx 1.
+        \end{align*}
+        Since the ratio is close to 1, we can conclude that the basis \(\{\bm{v}_{1}, \bm{v}_{2}\}\) is a ``good'' basis.
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{proof}
+          \begin{align*}
+                                            &\boxed{\begin{cases}
+                                                        \bm{v}_{1}^{\prime} = 5 \bm{v}_{1} + 6 \bm{v}_{2} \\
+                                                        \bm{v}_{2}^{\prime} = 19 \bm{v}_{1} + 23 \bm{v}_{2}
+                                                      \end{cases} } \\
+            \Rightarrow \det\begin{pmatrix}
+                              5  & 6  \\
+                              19 & 23
+                            \end{pmatrix} &= \boxed{1}.
+          \end{align*}
+        \end{proof}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \bm{w}                                                  &= \underbrace{-2402.52}_{t_{1}} \bm{v}_{1}^{\prime} + \underbrace{632.57}_{t_{2}} \bm{v}_{2}^{\prime} \\
+          \Rightarrow                                             &\begin{cases}
+                                                                     a_{1} = \nint{t_{1}} = -2403 \\
+                                                                     a_{2} = \nint{t_{2}} = 633
+                                                                   \end{cases}                                                  \\
+          \Rightarrow \bm{v}^{\prime}                             &= -2403 \bm{v}_{1}^{\prime} + 633 \bm{v}_{2}^{\prime}                                                 \\
+                                                                  &= \boxed{(46548, 9561)}                                                                               \\
+          \Rightarrow \alignedbox{\norm{\bm{v}^{\prime} - \bm{w}} &= 3860.08},                                                                                           \\
+                                                                  &\gg 107.15                                                                                            \\
+                                                                  &= \norm{\bm{v} - \bm{w}}
+        \end{align*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \sqrt{\frac{\det(L)}{\norm{\bm{v}_{1}} \norm{\bm{v}_{2}}}} &\approx \sqrt{\frac{158709}{3323.2 \cdot 12673.8}} \\
+          \alignedbox{                                               &\approx 0.061}                                     \\
+                                                                     &\ll 1.
+        \end{align*}
+        Since the ratio much smaller than 1, we can conclude that the basis \(\{\bm{v}_{1}, \bm{v}_{2}\}\) is a ``bad'' basis.
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}

@@ -1,0 +1,75 @@
+% region Filename parsing.
+% Provides macros manipulating strings of tokens.
+\RequirePackage{xstring}
+
+% Store the jobname as a string with category 11 characters.
+\edef\normaljobname{\expandafter\scantokens\expandafter{\jobname\noexpand}}
+\StrBetween{\normaljobname}{hw-}{-q}[\homeworknumber]
+\StrBehind{\normaljobname}{-q-}[\questionnumber]
+% endregion Filename parsing.
+
+\documentclass[
+  coursecode={MTHE 418},
+  assignmentname={Homework \homeworknumber},
+  studentnumber=20053722,
+  name={Bryan Hoang},
+  draft,
+  % final,
+]{
+  ltxanswer%
+}
+
+\usepackage{bch-style}
+
+\begin{document}
+  \begin{questions}
+    \setcounter{question}{\questionnumber}
+    \addtocounter{question}{-1}
+    \question[10]\
+    \begin{parts}
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \det(A_{1}) &= \det\begin{pmatrix}3&1\\2&2\end{pmatrix} \\
+                      &= 4                                        \\
+                      &\ne \pm 1.
+        \end{align*}
+        Therefore, \(\boxed{A_{1} \not\in \mathrm{GL}_{2}(\Z)}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \det(A_{2}) &= \det\begin{pmatrix}3&-2\\2&-1\end{pmatrix} \\
+                      &= 1.
+        \end{align*}
+        Therefore, \(\boxed{A_{2} \in \mathrm{GL}_{2}(\Z)}\).
+        \begin{equation*}
+          \boxed{A_{2}^{-1} = \begin{pmatrix}-1&2\\-2&3\end{pmatrix}}
+        \end{equation*}
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \det(A_{3}) &= \det\begin{pmatrix}3&2&2\\2&1&2\\-1&3&1\end{pmatrix} \\
+                      &= -9                                                             \\
+                      &\ne \pm 1.
+        \end{align*}
+        Therefore, \(\boxed{A_{3} \not\in \mathrm{GL}_{3}(\Z)}\).
+      \end{solution}
+
+      \part{}
+      \begin{solution}
+        \begin{align*}
+          \det(A_{4}) &= \det\begin{pmatrix}-3&-1&2\\1&-3&-1\\3&0&-2\end{pmatrix} \\
+                      &= 1.
+        \end{align*}
+        Therefore, \(\boxed{A_{4} \in \mathrm{GL}_{3}(\Z)}\).
+        \begin{equation*}
+          \boxed{A_{4}^{-1} = \begin{pmatrix}6&-2&7\\-1&0&-1\\9&-3&10\end{pmatrix}}
+        \end{equation*}
+      \end{solution}
+    \end{parts}
+  \end{questions}
+\end{document}
